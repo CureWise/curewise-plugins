@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "curewise",
+  "version": "1.0.0",
+  "description": "CureWise MCP plugin for profile, chat, clinical trials, records, and cross-check workflows.",
+  "author": {
+    "name": "CureWise",
+    "email": "support@curewise.com"
+  },
+  "homepage": "https://app.curewise.com/plugins",
+  "repository": "https://github.com/curewise/curewise-plugin",
+  "license": "MIT",
+  "keywords": ["mcp", "health", "clinical", "curewise"],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "CureWise API key",
+      "description": "Create one at https://app.curewise.com/me/api-keys",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}

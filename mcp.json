@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "curewise": {
+      "type": "http",
+      "url": "https://app.curewise.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${CUREWISE_API_KEY}"
+      }
+    }
+  }
+}

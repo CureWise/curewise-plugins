@@ -1,0 +1,18 @@
+{
+  "name": "curewise-plugins",
+  "owner": {
+    "name": "CureWise",
+    "email": "support@curewise.com"
+  },
+  "metadata": {
+    "description": "CureWise plugins for Cursor",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "curewise",
+      "source": "./",
+      "description": "CureWise MCP plugin for profile, records, clinical trials, and cross-check workflows."
+    }
+  ]
+}
