@@ -1,0 +1,28 @@
+{
+  "authoritative": false,
+  "notes": "Reference only. Perplexity connectors are configured in Perplexity UI or Agent API requests, not loaded from this file.",
+  "name": "CureWise",
+  "description": "CureWise MCP: profile, records, clinical trials, and cross-check workflows.",
+  "customRemoteConnector": {
+    "mcpServerUrl": "https://app.curewise.com/api/mcp",
+    "transport": "streamable-http",
+    "authentication": {
+      "type": "api_key",
+      "placeholder": "YOUR_API_KEY",
+      "headerFormat": "Authorization: Bearer <YOUR_API_KEY>"
+    }
+  },
+  "agentApi": {
+    "toolType": "mcp",
+    "serverUrl": "https://app.curewise.com/api/mcp",
+    "serverLabel": "curewise",
+    "authorizationTokenField": "authorization_token",
+    "authorizationTokenFormat": "cw_your_key_here"
+  },
+  "managedCatalog": false,
+  "discovery": {
+    "registry": "registry.modelcontextprotocol.io",
+    "file": "server.json"
+  },
+  "icon": "assets/logo.png"
+}

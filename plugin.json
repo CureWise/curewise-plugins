@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "curewise",
+  "version": "1.0.0",
+  "description": "CureWise MCP plugin for profile, records, clinical trials, and cross-check workflows.",
+  "author": {
+    "name": "CureWise",
+    "email": "support@curewise.com"
+  },
+  "homepage": "https://app.curewise.com/plugins",
+  "repository": "https://github.com/curewise/curewise-plugin",
+  "license": "MIT",
+  "keywords": ["mcp", "health", "clinical", "curewise"]
+}

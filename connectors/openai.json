@@ -1,0 +1,16 @@
+{
+  "authoritative": false,
+  "notes": [
+    "Reference only. OpenAI/Codex plugin installation is driven by repository manifests.",
+    "Use .codex-plugin/plugin.json for listing metadata and mcp.json for transport and auth wiring."
+  ],
+  "name": "CureWise",
+  "mcpServerUrl": "https://app.curewise.com/api/mcp",
+  "transport": "streamable-http",
+  "authentication": {
+    "type": "env_var",
+    "variable": "CUREWISE_API_KEY",
+    "headerFormat": "Authorization: Bearer ${CUREWISE_API_KEY}"
+  },
+  "publicSubmissionNote": "Public marketplace submissions may require OAuth review materials. See docs/usage-openai.md."
+}

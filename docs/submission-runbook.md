@@ -59,3 +59,9 @@ Required:
 
 Manual action:
 - Sign in to Cursor and submit repository through publisher form.
+
+## 4) Perplexity and OpenAI connector note
+
+- Perplexity custom remote connectors are configured in Perplexity's UI and are not submitted from this repository.
+- OpenAI ChatGPT custom connectors are configured in OpenAI's workspace UI and are not submitted from this repository.
+- This repo can store reference setup docs and non-authoritative config examples, but neither platform ingests these files as marketplace submissions.
