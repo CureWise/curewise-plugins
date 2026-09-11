@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-marketplace.json",
+  "name": "curewise-local",
+  "description": "Local CureWise marketplace for Claude plugin development and testing.",
+  "owner": {
+    "name": "CureWise",
+    "email": "support@curewise.com"
+  },
+  "plugins": [
+    {
+      "name": "curewise",
+      "source": "./",
+      "description": "CureWise MCP plugin for profile, records, clinical trials, and cross-check workflows."
+    }
+  ]
+}

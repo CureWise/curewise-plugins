@@ -1,16 +1,24 @@
 # CureWise Plugin
 
-Marketplace-ready plugin assets for connecting CureWise MCP to Claude and Cursor with API-key authentication.
+Marketplace-ready plugin assets for connecting CureWise MCP across supported clients.
 
 ## What this repo contains
 
+- `.codex-plugin/plugin.json`: OpenAI/Codex plugin directory manifest.
 - `.claude-plugin/plugin.json`: Claude Plugin Directory manifest with `userConfig` for API-key prompt.
+- `.agents/plugins/marketplace.json`: OpenAI/Codex marketplace catalog for desktop testing.
 - `.mcp.json`: Claude MCP definition using `Authorization: Bearer ${user_config.api_key}`.
 - `.claude-plugin/marketplace.json`: Local Claude marketplace for plugin testing.
 - `.cursor-plugin/plugin.json`: Cursor marketplace manifest.
 - `.cursor-plugin/marketplace.json`: Cursor marketplace manifest list for validator checks.
-- `mcp.json`: Cursor MCP config using `Authorization: Bearer ${CUREWISE_API_KEY}`.
+- `plugin.json`: Portable Agent Plugins manifest at repo root.
+- `server.json`: Global MCP Registry descriptor for broader MCP discovery.
+- `mcp.json`: Portable MCP config using `Authorization: Bearer ${CUREWISE_API_KEY}`.
 - `assets/logo.png`: Cursor marketplace logo.
+- `docs/usage-perplexity.md`: Perplexity custom connector and Agent API MCP setup.
+- `docs/usage-openai.md`: OpenAI/Codex local setup and public submission guidance.
+- `connectors/perplexity.json`: Reference Perplexity connector settings (non-authoritative).
+- `connectors/openai.json`: Reference OpenAI/Codex connector settings (non-authoritative).
 - `skills/curewise/SKILL.md`: Optional helper skill for better in-product guidance.
 - `scripts/validate-template.mjs`: Cursor template validator.
 
@@ -28,6 +36,13 @@ Primary auth flows:
 
 - **Cursor**: install plugin, then set `CUREWISE_API_KEY` from **Plugins -> Configure** (declared in `.cursor-plugin/plugin.json` `variables`).
 - **Claude Code**: install plugin, then enter `api_key` from the enable-time `userConfig` prompt.
+
+## Platform compatibility summary
+
+- **Cursor**: repository-driven plugin manifests in this repo, API-key auth supported.
+- **Claude Code / Claude Plugin Directory**: repository-driven plugin manifests in this repo, API-key auth supported via `userConfig`.
+- **OpenAI/Codex**: repo-driven manifests supported; API-key auth for local/developer installs, with OAuth-related review requirements for public submission. See `docs/usage-openai.md`.
+- **Perplexity**: custom remote connector (web UI) and MCP tool (Agent API) supported; managed catalog listing depends on broader registry/discovery flow. See `docs/usage-perplexity.md`.
 
 Fallback (local development / non-dashboard installs):
 
@@ -62,7 +77,7 @@ Important: for env-var fallback, the variable must be present in the shell/sessi
 {
   "mcpServers": {
     "curewise": {
-      "type": "http",
+      "type": "streamable-http",
       "url": "https://app.curewise.com/api/mcp",
       "headers": {
         "Authorization": "Bearer cw_your_key_here"
@@ -98,3 +113,5 @@ Cursor:
 
 - Cursor marketplace: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish)
 - Claude plugin directory: [clau.de/plugin-directory-submission](https://clau.de/plugin-directory-submission)
+- OpenAI/Codex public directory: submit via OpenAI plugin dashboard flow after meeting review prerequisites in `docs/usage-openai.md`.
+- Global MCP Registry: publish `server.json` to [registry.modelcontextprotocol.io](https://registry.modelcontextprotocol.io) via `mcp-publisher` for ecosystem discovery.

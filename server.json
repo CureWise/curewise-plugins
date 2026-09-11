@@ -1,0 +1,11 @@
+{
+  "name": "com.curewise/curewise-mcp",
+  "description": "CureWise MCP: clinical trials, health records, cross-checks.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.curewise.com/api/mcp"
+    }
+  ]
+}
