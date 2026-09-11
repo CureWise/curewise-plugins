@@ -6,7 +6,8 @@ public marketplace submission.
 ## What works now
 
 - Local and developer-mode installs from this repository.
-- API-key authentication via `CUREWISE_API_KEY`.
+- API-key authentication via `CUREWISE_API_KEY` for local plugin installs.
+- OAuth 2.1 connector flow for OpenAI/Claude custom connector surfaces.
 - MCP endpoint: `https://app.curewise.com/api/mcp`.
 
 This repository includes:
@@ -14,6 +15,14 @@ This repository includes:
 - `.codex-plugin/plugin.json` (OpenAI/Codex directory manifest)
 - `.agents/plugins/marketplace.json` (repo marketplace catalog)
 - `mcp.json` (portable MCP config using `streamable-http`)
+
+OAuth discovery + connector endpoints now available in CureWise webapp:
+
+- `/.well-known/oauth-authorization-server`
+- `/.well-known/oauth-protected-resource`
+- `/oauth/authorize`
+- `/api/oauth/register`
+- `/api/oauth/token`
 
 ## Option 1: Codex CLI (local install)
 
@@ -44,6 +53,22 @@ codex plugin install curewise
 3. Set `CUREWISE_API_KEY` for the plugin connection.
 4. Connect and run a read-only tool before any write operations.
 
+## Option 3: OpenAI ChatGPT web custom connector (OAuth)
+
+1. In ChatGPT workspace/admin connector setup, choose OAuth authentication.
+2. Use MCP server URL: `https://app.curewise.com/api/mcp`.
+3. ChatGPT reads the `WWW-Authenticate` `resource_metadata` pointer from MCP
+   401 responses and discovers OAuth endpoints from:
+   - `https://app.curewise.com/.well-known/oauth-protected-resource`
+   - `https://app.curewise.com/.well-known/oauth-authorization-server`
+4. Complete OAuth consent and continue with a read-only tool test first.
+
+## Claude custom connector note
+
+The same MCP OAuth discovery flow can be used by `claude.ai` custom connector
+surfaces. Claude Code plugin installs can continue using the existing
+`.claude-plugin/plugin.json` + `.mcp.json` API-key `userConfig` flow.
+
 ## Public marketplace submission requirements
 
 Public listing in the shared ChatGPT/Codex directory needs OpenAI review and
@@ -54,8 +79,7 @@ additional requirements beyond repo packaging:
 - Required tool annotations on every MCP tool (`readOnlyHint`,
   `openWorldHint`, `destructiveHint`) with justifications.
 - Review assets (test cases, release notes, and other submission materials).
-- OAuth and reviewer-ready demo credentials if submitting a public authenticated
-  connector flow.
+- Reviewer-ready demo credentials for OpenAI submission/review.
 
 ## Plan gating note
 

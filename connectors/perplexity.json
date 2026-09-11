@@ -4,7 +4,7 @@
   "name": "CureWise",
   "description": "CureWise MCP: profile, records, clinical trials, and cross-check workflows.",
   "customRemoteConnector": {
-    "mcpServerUrl": "https://app.curewise.com/api/mcp",
+    "mcpServerUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/api/mcp",
     "transport": "streamable-http",
     "authentication": {
       "type": "api_key",
@@ -14,7 +14,7 @@
   },
   "agentApi": {
     "toolType": "mcp",
-    "serverUrl": "https://app.curewise.com/api/mcp",
+    "serverUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/api/mcp",
     "serverLabel": "curewise",
     "authorizationTokenField": "authorization_token",
     "authorizationTokenFormat": "cw_your_key_here"

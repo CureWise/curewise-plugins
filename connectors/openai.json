@@ -2,15 +2,25 @@
   "authoritative": false,
   "notes": [
     "Reference only. OpenAI/Codex plugin installation is driven by repository manifests.",
-    "Use .codex-plugin/plugin.json for listing metadata and mcp.json for transport and auth wiring."
+    "OAuth discovery is now available from the CureWise MCP server for web connector flows."
   ],
   "name": "CureWise",
-  "mcpServerUrl": "https://app.curewise.com/api/mcp",
+  "mcpServerUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/api/mcp",
   "transport": "streamable-http",
   "authentication": {
-    "type": "env_var",
-    "variable": "CUREWISE_API_KEY",
-    "headerFormat": "Authorization: Bearer ${CUREWISE_API_KEY}"
+    "localPlugin": {
+      "type": "env_var",
+      "variable": "CUREWISE_API_KEY",
+      "headerFormat": "Authorization: Bearer ${CUREWISE_API_KEY}"
+    },
+    "webConnectorOAuth": {
+      "type": "oauth_2_1_pkce",
+      "resourceMetadataUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/.well-known/oauth-protected-resource",
+      "authorizationServerMetadataUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/.well-known/oauth-authorization-server",
+      "authorizeUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/oauth/authorize",
+      "tokenUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/api/oauth/token",
+      "registrationUrl": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/api/oauth/register"
+    }
   },
-  "publicSubmissionNote": "Public marketplace submissions may require OAuth review materials. See docs/usage-openai.md."
+  "publicSubmissionNote": "OAuth endpoints and domain verification path are available. Final OpenAI review still requires verified identity, test cases, and reviewer credentials."
 }

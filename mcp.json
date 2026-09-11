@@ -3,7 +3,7 @@
   "mcpServers": {
     "curewise": {
       "type": "streamable-http",
-      "url": "https://app.curewise.com/api/mcp",
+      "url": "https://e790-2401-4900-8fc6-93b-3d67-a4c4-3a72-80dc.ngrok-free.app/api/mcp",
       "headers": {
         "Authorization": "Bearer ${CUREWISE_API_KEY}"
       }
