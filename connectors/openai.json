@@ -5,7 +5,7 @@
     "OAuth discovery is now available from the CureWise MCP server for web connector flows."
   ],
   "name": "CureWise",
-  "mcpServerUrl": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/api/mcp",
+  "mcpServerUrl": "https://app.curewise.com/api/mcp",
   "transport": "streamable-http",
   "authentication": {
     "localPlugin": {
@@ -15,11 +15,11 @@
     },
     "webConnectorOAuth": {
       "type": "oauth_2_1_pkce",
-      "resourceMetadataUrl": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/.well-known/oauth-protected-resource",
-      "authorizationServerMetadataUrl": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/.well-known/oauth-authorization-server",
-      "authorizeUrl": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/oauth/authorize",
-      "tokenUrl": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/api/oauth/token",
-      "registrationUrl": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/api/oauth/register"
+      "resourceMetadataUrl": "https://app.curewise.com/.well-known/oauth-protected-resource",
+      "authorizationServerMetadataUrl": "https://app.curewise.com/.well-known/oauth-authorization-server",
+      "authorizeUrl": "https://app.curewise.com/oauth/authorize",
+      "tokenUrl": "https://app.curewise.com/api/oauth/token",
+      "registrationUrl": "https://app.curewise.com/api/oauth/register"
     }
   },
   "publicSubmissionNote": "OAuth endpoints and domain verification path are available. Final OpenAI review still requires verified identity, test cases, and reviewer credentials."

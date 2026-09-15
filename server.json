@@ -5,7 +5,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://f103-2401-4900-8fc6-93b-e999-1e3a-ae06-9863.ngrok-free.app/api/mcp"
+      "url": "https://app.curewise.com/api/mcp"
     }
   ]
 }
