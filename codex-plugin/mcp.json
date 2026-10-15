@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "curewise": {
+      "type": "streamable-http",
+      "url": "https://app.curewise.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${CUREWISE_API_KEY}"
+      }
+    }
+  }
+}

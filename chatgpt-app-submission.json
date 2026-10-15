@@ -1,0 +1,368 @@
+{
+  "$schema": "https://developers.openai.com/apps-sdk/schemas/chatgpt-app-submission.v1.json",
+  "schema_version": 1,
+  "app_info": {
+    "display_name": "CureWise",
+    "subtitle": "Clinical trials and health AI",
+    "description": "CureWise helps users explore clinical trials, review their health records and medical documents, chat with care-context AI, and run multi-model Cross Check reviews through ChatGPT.",
+    "category": "EDUCATION"
+  },
+  "tools": {
+    "get_profile": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only retrieves the authenticated user's CureWise profile settings and does not create or update account data.",
+        "open_world_justification": "Reads only the user's private CureWise account workspace and does not access public internet services.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_models": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only lists supported AI models available in CureWise and does not change any state.",
+        "open_world_justification": "Returns the closed CureWise model catalog and does not call public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "chat": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": true,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Creates or continues a chat thread and persists a new user message in the user's CureWise chat history.",
+        "open_world_justification": "Sends the conversation to external AI model providers to generate a response outside the private workspace boundary.",
+        "destructive_justification": "Appends chat content without deleting threads, messages, or other irreversible account data."
+      }
+    },
+    "list_chat_threads": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only lists existing chat threads for the authenticated user and does not modify them.",
+        "open_world_justification": "Reads only the user's private CureWise chat workspace and does not access public internet services.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_chat_thread": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only retrieves metadata for one existing chat thread and does not modify chat state.",
+        "open_world_justification": "Reads only the user's private CureWise chat workspace and does not access public internet services.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_chat_messages": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only retrieves messages from an existing chat thread and does not add or change messages.",
+        "open_world_justification": "Reads only the user's private CureWise chat workspace and does not access public internet services.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_clinical_history": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only retrieves the user's stored clinical history summary and does not update health records.",
+        "open_world_justification": "Reads only private CureWise health summary data for the authenticated user.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "search_my_clinical_trials": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Searches ClinicalTrials.gov using the user's saved search terms and does not create or change saved trial bookmarks.",
+        "open_world_justification": "Queries the public ClinicalTrials.gov registry over the internet to return matching trials.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "search_clinical_trials": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Searches ClinicalTrials.gov by explicit terms and does not mutate CureWise account state.",
+        "open_world_justification": "Queries the public ClinicalTrials.gov registry over the internet to return matching trials.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_clinical_trial": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Retrieves details for one ClinicalTrials.gov study by NCT ID and does not modify any data.",
+        "open_world_justification": "Fetches publicly available trial details from ClinicalTrials.gov over the internet.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "extract_search_params": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Runs an extraction workflow that can generate and persist clinical-trial search parameters from the user's clinical history.",
+        "open_world_justification": "Operates within the user's CureWise account workflow and does not publish content to public third-party systems.",
+        "destructive_justification": "Does not delete bookmarks, overwrite irreversible records, or revoke access."
+      }
+    },
+    "check_eligibility": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Runs an eligibility analysis for a trial and can cache the resulting assessment in the user's CureWise workspace.",
+        "open_world_justification": "Stores and returns eligibility results inside the user's private CureWise account rather than publishing externally.",
+        "destructive_justification": "Does not delete trials, documents, or account data, and cached results remain reversible by later updates."
+      }
+    },
+    "list_saved_trials": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only lists trials the user has already bookmarked and does not change bookmarks.",
+        "open_world_justification": "Reads only the user's private CureWise saved-trial list and does not access public registries.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "save_trial": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Creates a private bookmark for a clinical trial in the authenticated user's CureWise account.",
+        "open_world_justification": "Writes only to the user's private saved-trial list and does not publish content publicly.",
+        "destructive_justification": "Adds a bookmark without deleting existing data or performing irreversible account actions."
+      }
+    },
+    "unsave_trial": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Removes an existing clinical-trial bookmark from the user's CureWise saved list.",
+        "open_world_justification": "Deletes only within the user's private CureWise bookmarks and does not change public third-party systems.",
+        "destructive_justification": "Permanently removes the selected bookmark from the user's saved trials until it is saved again."
+      }
+    },
+    "list_documents": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only lists the user's EHR and uploaded documents with optional filters and does not modify files.",
+        "open_world_justification": "Reads only private CureWise document metadata for the authenticated user.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_document_filter_options": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only returns available document filter metadata such as providers and date ranges.",
+        "open_world_justification": "Reads only private CureWise document metadata for the authenticated user.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "search_documents": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only searches existing document content and returns matches without changing documents.",
+        "open_world_justification": "Searches only the user's private CureWise document store and does not query public internet sources.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_document_content": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only retrieves narrative content and a short-lived download URL for an existing document.",
+        "open_world_justification": "Returns private patient-document content from the user's CureWise workspace only.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "download_document": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only issues a short-lived download URL for an existing user-uploaded document and does not modify the file.",
+        "open_world_justification": "Provides access only to the user's private CureWise upload and does not publish externally.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "list_cross_checks": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only lists existing Cross Check runs for the authenticated user and does not start new ones.",
+        "open_world_justification": "Reads only private CureWise Cross Check history and does not access public internet services.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "get_cross_check": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Only retrieves details for one existing Cross Check run and does not modify it.",
+        "open_world_justification": "Reads only private CureWise Cross Check results for the authenticated user.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    },
+    "ask_cross_check": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Creates a new Cross Check comparison run and stores multi-model review results in the user's CureWise workspace.",
+        "open_world_justification": "Persists results in the user's private CureWise account and does not publish content to public third-party systems.",
+        "destructive_justification": "Creates a new comparison record without deleting existing runs or performing irreversible account actions."
+      }
+    },
+    "query_health_records": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Queries structured EHR portal data by domain and action and does not create or update health records.",
+        "open_world_justification": "Reads only the authenticated user's private CureWise health-record store.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform irreversible actions."
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "description": "Retrieve the user's profile and preferred model settings.",
+      "user_prompt": "Show my CureWise profile, including my selected model and clinical trial search terms.",
+      "file_attachment_urls": null,
+      "tools_triggered": "get_profile",
+      "expected_output": "Returns sanitized profile fields such as model preference, language, and clinical trial search terms without internal account metadata.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Search ClinicalTrials.gov using explicit condition terms.",
+      "user_prompt": "Search clinical trials for metastatic breast cancer that are currently recruiting.",
+      "file_attachment_urls": null,
+      "tools_triggered": "search_clinical_trials",
+      "expected_output": "Returns matching ClinicalTrials.gov studies with NCT IDs, titles, and enough detail to choose a trial to inspect further.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Open a specific trial and save it as a bookmark.",
+      "user_prompt": "Get details for NCT01234567 and save that trial to my CureWise bookmarks.",
+      "file_attachment_urls": null,
+      "tools_triggered": "get_clinical_trial,save_trial",
+      "expected_output": "Shows the trial details from ClinicalTrials.gov and confirms the trial was bookmarked in the user's private saved list.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Search private medical documents for a lab term.",
+      "user_prompt": "Search my medical documents for mentions of hemoglobin A1c and summarize what you find.",
+      "file_attachment_urls": null,
+      "tools_triggered": "search_documents",
+      "expected_output": "Returns matching document snippets from the user's private records without modifying or deleting any documents.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Start a Cross Check second-opinion review.",
+      "user_prompt": "Run a Cross Check on whether immunotherapy is appropriate given my current clinical history, and show the comparison result.",
+      "file_attachment_urls": null,
+      "tools_triggered": "ask_cross_check",
+      "expected_output": "Creates a Cross Check run and returns multi-model review output stored in the user's CureWise workspace.",
+      "expected_output_url": null
+    }
+  ],
+  "negative_test_cases": [
+    {
+      "description": "Do not trigger for unrelated calendar or scheduling requests.",
+      "user_prompt": "What meetings do I have on my calendar tomorrow afternoon?",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because calendar scheduling is outside CureWise supported workflows.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not trigger for general coding or repository tasks.",
+      "user_prompt": "Write a Python script that renames files in my local Downloads folder.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because local file automation is outside CureWise supported workflows.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not trigger for booking travel or shopping.",
+      "user_prompt": "Find me the cheapest flight from NYC to London next weekend and book it.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because travel booking is outside CureWise supported workflows.",
+      "expected_output_url": null
+    }
+  ]
+}
