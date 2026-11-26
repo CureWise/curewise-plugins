@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "app-6aa7b0ccf29081918b3ff225f8780f83",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CureWise MCP for clinical trials, records, and cross-check workflows.",
   "author": {
     "name": "CureWise",

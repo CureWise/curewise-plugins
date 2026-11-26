@@ -2,7 +2,7 @@
   "name": "curewise",
   "displayName": "CureWise",
   "description": "CureWise MCP plugin for profile, records, clinical trials, and cross-check workflows.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "CureWise",
     "email": "support@curewise.com"
