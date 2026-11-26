@@ -17,6 +17,7 @@ Marketplace-ready plugin assets for connecting CureWise MCP across supported cli
 - `assets/logo.png`: Cursor marketplace logo.
 - `docs/usage-perplexity.md`: Perplexity custom connector and Agent API MCP setup.
 - `docs/usage-openai.md`: OpenAI/Codex local setup and public submission guidance.
+- `DEVELOPMENT.md`: Secure local development, CI, and credential-manager guidance.
 - `connectors/perplexity.json`: Reference Perplexity connector settings (non-authoritative).
 - `connectors/openai.json`: Reference OpenAI/Codex connector settings (non-authoritative).
 - `skills/curewise/SKILL.md`: Optional helper skill for better in-product guidance.
@@ -32,24 +33,13 @@ Marketplace-ready plugin assets for connecting CureWise MCP across supported cli
 Generate a key at:
 - `https://app.curewise.com/me/api-keys`
 
-Primary auth flows:
+Primary auth flows (secure credential entry only):
 
-- **Cursor**: install plugin, then set `CUREWISE_API_KEY` from **Plugins -> Configure** (declared in `.cursor-plugin/plugin.json` `variables`).
-- **Claude Code**: install plugin, then enter `api_key` from the enable-time `userConfig` prompt.
+- **Claude Code / Claude Plugin Directory**: install the plugin, then enter `api_key` when Claude prompts via `userConfig`. The key is stored in Claude’s secure credential store (not written to disk by this plugin).
+- **Cursor**: install the plugin, then set `CUREWISE_API_KEY` from **Settings → Extensions → CureWise** / **Plugins → Configure** (declared in `.cursor-plugin/plugin.json` `variables`). Cursor stores the value in its secure configuration.
+- **OpenAI / Codex / Perplexity**: use the client’s connector or plugin settings UI. See `docs/usage-openai.md` and `docs/usage-perplexity.md`.
 
-## Platform compatibility summary
-
-- **Cursor**: repository-driven plugin manifests in this repo, API-key auth supported.
-- **Claude Code / Claude Plugin Directory**: repository-driven plugin manifests in this repo, API-key auth supported via `userConfig`.
-- **OpenAI/Codex**: repo-driven manifests supported; API-key auth for local/developer installs, with OAuth-related review requirements for public submission. See `docs/usage-openai.md`.
-- **Perplexity**: custom remote connector (web UI) and MCP tool (Agent API) supported; managed catalog listing depends on broader registry/discovery flow. See `docs/usage-perplexity.md`.
-
-Fallback (local development / non-dashboard installs):
-
-```bash
-echo 'export CUREWISE_API_KEY="cw_your_key_here"' >> ~/.zshrc
-source ~/.zshrc
-```
+Do **not** write API keys into shell profiles, `~/.cursor/mcp.json`, or other on-disk config files. CureWise never stores credentials on disk; keys are provided only through host secure prompts or credential injection. For local CI and credential-manager workflows, see `DEVELOPMENT.md`.
 
 Expected header:
 
@@ -57,35 +47,27 @@ Expected header:
 Authorization: Bearer cw_...
 ```
 
-Important: for env-var fallback, the variable must be present in the shell/session used to launch the client process.
+## Platform compatibility summary
+
+- **Cursor**: repository-driven plugin manifests in this repo, API-key auth supported via plugin Configure UI.
+- **Claude Code / Claude Plugin Directory**: repository-driven plugin manifests in this repo, API-key auth supported via `userConfig`.
+- **OpenAI/Codex**: repo-driven manifests supported; API-key auth for local/developer installs, with OAuth-related review requirements for public submission. See `docs/usage-openai.md`.
+- **Perplexity**: custom remote connector (web UI) and MCP tool (Agent API) supported; managed catalog listing depends on broader registry/discovery flow. See `docs/usage-perplexity.md`.
 
 ## Claude setup notes
 
 1. Add local marketplace: `claude plugin marketplace add ./curewise-plugin`.
 2. Install plugin: `claude plugin install curewise@curewise-local`.
-3. Enter `api_key` when prompted by Claude.
+3. Enter `api_key` when prompted by Claude (secure prompt; do not paste keys into local config files).
 4. Claude reads `.mcp.json` and injects `${user_config.api_key}` into request headers.
 5. Validate plugin manifest: `npx -y @anthropic-ai/claude-code plugin validate --strict .claude-plugin/plugin.json`.
 
 ## Cursor setup notes
 
 1. Validate the repo shape: `node scripts/validate-template.mjs`.
-2. Install the plugin, then set `CUREWISE_API_KEY` in **Plugins -> Configure**.
-3. If your install path does not expose plugin Configure, use env-var fallback (`export CUREWISE_API_KEY=...`) or set a literal key in `~/.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "curewise": {
-      "type": "streamable-http",
-      "url": "https://app.curewise.com/api/mcp",
-      "headers": {
-        "Authorization": "Bearer cw_your_key_here"
-      }
-    }
-  }
-}
-```
+2. Install the plugin.
+3. Open **Settings → Extensions → CureWise** (or **Plugins → Configure**) and enter `CUREWISE_API_KEY`.
+4. Confirm the MCP connection with a read-only tool such as `get_profile`.
 
 ## Security and privacy
 
@@ -93,7 +75,7 @@ Important: for env-var fallback, the variable must be present in the shell/sessi
 - Terms of service: `https://curewise.com/terms`
 - Support: `support@curewise.com`
 
-This repository never stores real API keys. Use placeholders in committed configs and provide credentials only in runtime settings.
+CureWise never stores credentials on disk. This repository never commits real API keys. Use placeholders in committed configs and provide credentials only through host secure prompts (Claude `userConfig`, Cursor plugin Configure) or short-lived injection described in `DEVELOPMENT.md`.
 
 ## Validation
 
@@ -107,7 +89,7 @@ Cursor:
 
 - Validate JSON manifests.
 - Confirm plugin loads from local test directory.
-- Verify MCP connection with a test API key.
+- Verify MCP connection with a test API key entered via plugin Configure.
 
 ## Submission
 

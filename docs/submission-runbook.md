@@ -43,6 +43,7 @@ Required before clicking submit:
 - Support contact: `support@curewise.com`
 - Test account with no MFA and populated data
 - Tool annotations + clear read/write separation in MCP server
+- Credential docs use Claude `userConfig` / Cursor Configure only (no shell-profile or on-disk MCP key instructions)
 
 Manual action:
 - Sign in with Console role (Developer/Admin/Owner) and submit from portal.
