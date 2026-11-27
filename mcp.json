@@ -5,7 +5,7 @@
       "type": "streamable-http",
       "url": "https://app.curewise.com/api/mcp",
       "headers": {
-        "Authorization": "Bearer ${CUREWISE_API_KEY}"
+        "Authorization": "Bearer YOUR_API_KEY"
       }
     }
   }

@@ -64,7 +64,7 @@ tools=[{
   "type": "mcp",
   "server_url": "https://app.curewise.com/api/mcp",
   "server_label": "curewise",
-  "authorization_token": "cw_your_key_here"
+  "authorization_token": "YOUR_API_KEY"
 }]
 ```
 

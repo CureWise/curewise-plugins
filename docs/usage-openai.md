@@ -7,8 +7,8 @@ public marketplace submission.
 
 - Local and developer-mode installs from this repository.
 - API-key authentication for local plugin installs, provided through the client’s
-  secure configuration or short-lived session injection (see `DEVELOPMENT.md`).
-  Do not write keys to shell profiles or on-disk MCP config files.
+  secure settings UI (see `DEVELOPMENT.md`). The plugin never reads a key from
+  your machine; do not write keys to shell profiles or on-disk MCP config files.
 - OAuth 2.1 connector flow for OpenAI/Claude custom connector surfaces.
 - MCP endpoint: `https://app.curewise.com/api/mcp`.
 
@@ -28,9 +28,10 @@ OAuth discovery + connector endpoints now available in CureWise webapp:
 
 ## Option 1: Codex CLI (local install)
 
-1. Provide a CureWise API key for the current process only via your credential
-   manager or CI secret injection. See `DEVELOPMENT.md`. Do not append the key
-   to a shell profile or save it in a local MCP JSON file.
+1. Enter your CureWise API key through the client’s plugin / connector settings
+   UI when prompted. Do not append the key to a shell profile or save it in a
+   local MCP JSON file; committed sample configs use the `YOUR_API_KEY`
+   placeholder. See `DEVELOPMENT.md`.
 2. Add this repository as a plugin marketplace:
 
 ```bash

@@ -9,9 +9,9 @@
   "transport": "streamable-http",
   "authentication": {
     "localPlugin": {
-      "type": "env_var",
-      "variable": "CUREWISE_API_KEY",
-      "headerFormat": "Authorization: Bearer ${CUREWISE_API_KEY}"
+      "type": "api_key",
+      "placeholder": "YOUR_API_KEY",
+      "headerFormat": "Authorization: Bearer YOUR_API_KEY"
     },
     "webConnectorOAuth": {
       "type": "oauth_2_1_pkce",
