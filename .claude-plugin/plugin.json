@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "curewise",
-  "version": "1.0.3",
-  "description": "CureWise MCP plugin for profile, chat, clinical trials, records, and cross-check workflows.",
+  "version": "1.0.4",
+  "description": "CureWise MCP plugin for health navigation: profile, clinical trials, records, chat, and Cross Check. The chat and Cross Check tools send your request to third-party AI models operated by OpenAI, Anthropic, and Google, which generate the responses; CureWise routes the request and returns their output.",
   "author": {
     "name": "CureWise",
     "email": "support@curewise.com"

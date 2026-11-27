@@ -2,6 +2,10 @@
 
 Marketplace-ready plugin assets for connecting CureWise MCP across supported clients.
 
+## AI model disclosure
+
+Some CureWise tools do not answer with Claude. The `chat` tool and Cross Check (`ask_cross_check`) send your request to third-party AI models that write the answer. Those models are operated by OpenAI, Anthropic, and Google; CureWise routes your request to them and returns their output. The other tools (profile, clinical trials, documents, health records) read/write data in your CureWise account and do not generate answers with another model.
+
 ## What this repo contains
 
 - `.codex-plugin/plugin.json`: OpenAI/Codex plugin directory manifest.
@@ -12,7 +16,6 @@ Marketplace-ready plugin assets for connecting CureWise MCP across supported cli
 - `plugin.json`: Portable Agent Plugins manifest at repo root.
 - `server.json`: Global MCP Registry descriptor for broader MCP discovery.
 - `mcp.json`: Portable MCP config sample using `Authorization: Bearer YOUR_API_KEY` placeholder.
-- `assets/logo.png`: Plugin logo.
 - `docs/usage-perplexity.md`: Perplexity custom connector and Agent API MCP setup.
 - `docs/usage-openai.md`: OpenAI/Codex local setup and public submission guidance.
 - `DEVELOPMENT.md`: Local development and validation guidance (secure credential entry only).

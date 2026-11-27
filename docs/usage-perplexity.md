@@ -33,7 +33,7 @@ In Perplexity:
    - **Authentication**: `API Key`
    - **API key value**: your full `cw_...` key
    - **Transport**: `Streamable HTTP`
-   - **Icon**: optional (`assets/logo.png` is 56 KB, under the 128 KB limit)
+   - **Icon**: optional, under the 128 KB limit
 6. Confirm the acknowledgement checkbox and click **Add**.
 7. Open the connector card and complete enable/authentication.
 

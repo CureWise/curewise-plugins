@@ -23,6 +23,5 @@
   "discovery": {
     "registry": "registry.modelcontextprotocol.io",
     "file": "server.json"
-  },
-  "icon": "assets/logo.png"
+  }
 }
